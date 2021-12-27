@@ -9,8 +9,8 @@ jobs:
   install:
     env:
         MAGIC_VERSION:          8.3.209
-        PDK_ROOT:               $GITHUB_WORKSPACE/pdk
-        OPENLANE_ROOT:          $GITHUB_WORKSPACE/openlane
+        PDK_ROOT:               /home/runner/pdk
+        OPENLANE_ROOT:          /home/runner/openlane
         SKYWATER_COMMIT:        c094b6e83a4f9298e47f696ec5a7fd53535ec5eb
         OPEN_PDKS_COMMIT:       14db32aa8ba330e88632ff3ad2ff52f4f4dae1ad
         CARAVEL_COMMIT:         5712871d27c08900d18edc72a7f534cc8be1b2dd
