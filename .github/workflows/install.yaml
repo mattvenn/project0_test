@@ -42,6 +42,7 @@ jobs:
         export CARAVEL_ROOT=$(pwd)/caravel;
         make install;
         cd caravel;
+        git checkout mpw-3;
         git log | head;
         cd ..;
         make pdk;
