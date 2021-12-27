@@ -26,15 +26,14 @@ jobs:
 #      run: sudo apt-get install -y docker.io
 #
     - name: caravel_user_project
-      env:
-        PDK_ROOT: $(pwd)/pdk
-        OPENLANE_ROOT: $(pwd)/openlane
-        SKYWATER_COMMIT: c094b6e83a4f9298e47f696ec5a7fd53535ec5eb
-        OPEN_PDKS_COMMIT: 14db32aa8ba330e88632ff3ad2ff52f4f4dae1ad
-        OPENLANE_TAG: mpw-3a
-        OPENLANE_IMAGE_NAME: efabless/openlane:$OPENLANE_TAG
 
       run: >
+        export PDK_ROOT=$(pwd)/pdk;
+        export OPENLANE_ROOT=$(pwd)/openlane;
+        export SKYWATER_COMMIT=c094b6e83a4f9298e47f696ec5a7fd53535ec5eb;
+        export OPEN_PDKS_COMMIT=14db32aa8ba330e88632ff3ad2ff52f4f4dae1ad;
+        export OPENLANE_TAG=mpw-3a;
+        export OPENLANE_IMAGE_NAME=efabless/openlane:$OPENLANE_TAG;
         echo $PDK_ROOT;
         echo $OPENLANE_ROOT;
         echo $OPENLANE_IMAGE_NAME;
