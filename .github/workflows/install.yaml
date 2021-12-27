@@ -44,16 +44,7 @@ jobs:
         cd ..;
         make pdk;
         make openlane;
-        docker run -it -v $(OPENLANE_ROOT):/openLANE_flow \
-                -v $(PDK_ROOT):$(PDK_ROOT) \
-                -v $(PWD)/..:/project \
-                -v $(CARAVEL_ROOT):$(CARAVEL_ROOT) \
-                -e PDK_ROOT=$(PDK_ROOT) \
-                -e CARAVEL_ROOT=$(CARAVEL_ROOT) \
-                -u $(shell id -u $(USER)):$(shell id -g $(USER)) \
-                $(OPENLANE_IMAGE_NAME) \
-                sh -c "cd /project/openlane && flow.tcl -design ./$* -save_path .. -save -tag $* -overwrite";
-
+        docker run -it -v $(OPENLANE_ROOT):/openLANE_flow -v $(PDK_ROOT):$(PDK_ROOT) -v $(PWD)/..:/project -v $(CARAVEL_ROOT):$(CARAVEL_ROOT) -e PDK_ROOT=$(PDK_ROOT) -e CARAVEL_ROOT=$(CARAVEL_ROOT) -u $(shell id -u $(USER)):$(shell id -g $(USER)) $(OPENLANE_IMAGE_NAME) sh -c "cd /project/openlane && flow.tcl -design ./$* -save_path .. -save -tag $* -overwrite"; 
 
     - name: Archive GDS
       uses: actions/upload-artifact@v2
