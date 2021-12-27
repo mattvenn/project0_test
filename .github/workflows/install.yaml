@@ -1,6 +1,9 @@
 name: project0
 # either manually started, or on a schedule
-on: push
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 4 * * *' # At 4:00 UTC everyday
 jobs:
   install:
     # ubuntu
@@ -22,6 +25,7 @@ jobs:
     - name: test magic
       run: magic --version
 
+    # build the PDK, openlane and make the user project and wrapper
     - name: caravel_user_project
       run: >
         export PDK_ROOT=$(pwd)/pdk;
@@ -40,7 +44,6 @@ jobs:
         make install;
         cd caravel;
         git checkout 5712871d27c08900d18edc72a7f534cc8be1b2dd;
-        git log | head;
         cd ..;
         make pdk;
         make openlane;
