@@ -16,6 +16,6 @@ Final report summaries and GDS files are archived and stored along with the acti
 
 ## Notes
 
-* The usual command to build the GDS is 'make user_proj_example' and 'make uesr_project_wrapper'. 
+* The usual command to build the GDS is 'make user_proj_example' and 'make user_project_wrapper'. 
 * These recipes start docker in interactive mode, which doesn't work in the Github actions context.
 * To work around this, the full docker command (without the -it flags) is used.
