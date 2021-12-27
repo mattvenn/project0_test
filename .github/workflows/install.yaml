@@ -54,23 +54,23 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
           name: Proj GDS
-          path: caravel_user_project/gds/user_proj_example.gds
+          path: /home/runner/caravel_user_project/gds/user_proj_example.gds
 
     - name: Archive Proj Signoff
       uses: actions/upload-artifact@v2
       with:
           name: Proj Report
-          path: caravel_user_project/openlane/user_proj_example/runs/user_proj_example/reports/final_summary_report.csv
+          path: /home/runner/caravel_user_project/openlane/user_proj_example/runs/user_proj_example/reports/final_summary_report.csv
 
     # archive the gds and final report for the user project wrapper
     - name: Archive Wrapper GDS
       uses: actions/upload-artifact@v2
       with:
           name: Wrapper GDS
-          path: caravel_user_project/gds/user_project_wrapper.gds
+          path: /home/runner/caravel_user_project/gds/user_project_wrapper.gds
 
     - name: Archive Wrapper Signoff
       uses: actions/upload-artifact@v2
       with:
           name: Wrapper Report
-          path: caravel_user_project/openlane/user_project_wrapper/runs/user_project_wrapper/reports/final_summary_report.csv
+          path: /home/runner/caravel_user_project/openlane/user_project_wrapper/runs/user_project_wrapper/reports/final_summary_report.csv
