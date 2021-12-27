@@ -2,7 +2,7 @@ cd $HOME
 git clone https://github.com/efabless/caravel_user_project.git
 
 cd caravel_user_project
-git checkout mpw-3
+git checkout $USER_PROJECT_COMMIT
 
 make install
 cd caravel
