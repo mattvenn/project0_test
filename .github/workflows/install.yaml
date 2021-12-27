@@ -1,0 +1,23 @@
+name: project0
+# either manually started, or on a schedule
+on: push
+jobs:
+  install:
+    # ubuntu
+    runs-on: ubuntu-latest
+    steps:
+
+    # magic dependency
+    - name: install magic
+      run: >
+        sudo apt-get install -y tcsh csh tcl-dev tk-dev libcairo2-dev;
+        git clone git://opencircuitdesign.com/magic;
+        cd magic;
+        git checkout 8.3.209;
+        ./configure;
+        make;
+        sudo make install;
+
+    # test
+    - name: test magic
+      run: magic --version
