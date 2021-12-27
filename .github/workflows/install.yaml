@@ -5,51 +5,43 @@ on:
   schedule:
     - cron: '0 4 * * *' # At 4:00 UTC everyday
 jobs:
+  env:
+    MAGIC_VERSION:          8.3.209
+    PDK_ROOT:               /pdk
+    OPENLANE_ROOT:          /openlane
+    SKYWATER_COMMIT:        c094b6e83a4f9298e47f696ec5a7fd53535ec5eb
+    OPEN_PDKS_COMMIT:       14db32aa8ba330e88632ff3ad2ff52f4f4dae1ad
+    CARAVEL_COMMIT:         5712871d27c08900d18edc72a7f534cc8be1b2dd
+    OPENLANE_TAG:           mpw-3a
+    OPENLANE_IMAGE_NAME:    efabless/openlane:mpw-3a
+
   install:
     # ubuntu
     runs-on: ubuntu-latest
     steps:
 
+    # dependencies we can install from package manager
+    - name: install deps
+      run: sudo apt-get install -y tcsh csh tcl-dev tk-dev libcairo2-dev
+
     # magic dependency
     - name: install magic
-      run: >
-        sudo apt-get install -y tcsh csh tcl-dev tk-dev libcairo2-dev;
-        git clone git://opencircuitdesign.com/magic;
-        cd magic;
-        git checkout 8.3.209;
-        ./configure;
-        make;
-        sudo make install;
+      run: bash ${GITHUB_WORKSPACE}/.github/scripts/install_magic.sh
 
     # test
     - name: test magic
       run: magic --version
 
-    # build the PDK, openlane and make the user project and wrapper
-    - name: caravel_user_project
-      run: >
-        export PDK_ROOT=$(pwd)/pdk;
-        export OPENLANE_ROOT=$(pwd)/openlane;
-        export SKYWATER_COMMIT=c094b6e83a4f9298e47f696ec5a7fd53535ec5eb;
-        export OPEN_PDKS_COMMIT=14db32aa8ba330e88632ff3ad2ff52f4f4dae1ad;
-        export OPENLANE_TAG=mpw-3a;
-        export OPENLANE_IMAGE_NAME=efabless/openlane:$OPENLANE_TAG;
-        echo $PDK_ROOT;
-        echo $OPENLANE_ROOT;
-        echo $OPENLANE_IMAGE_NAME;
-        git clone https://github.com/efabless/caravel_user_project.git;
-        cd caravel_user_project;
-        git checkout mpw-3;
-        export CARAVEL_ROOT=$(pwd)/caravel;
-        make install;
-        cd caravel;
-        git checkout 5712871d27c08900d18edc72a7f534cc8be1b2dd;
-        cd ..;
-        make pdk;
-        make openlane;
-        cd openlane;
-        docker run -v $OPENLANE_ROOT:/openLANE_flow -v $PDK_ROOT:$PDK_ROOT -v $PWD/..:/project -v $CARAVEL_ROOT:$CARAVEL_ROOT -e PDK_ROOT=$PDK_ROOT -e CARAVEL_ROOT=$CARAVEL_ROOT -u $(id -u $USER):$(id -g $USER) $OPENLANE_IMAGE_NAME sh -c "cd /project/openlane && flow.tcl -design ./user_proj_example -save_path .. -save -tag user_proj_example -overwrite";
-        docker run -v $OPENLANE_ROOT:/openLANE_flow -v $PDK_ROOT:$PDK_ROOT -v $PWD/..:/project -v $CARAVEL_ROOT:$CARAVEL_ROOT -e PDK_ROOT=$PDK_ROOT -e CARAVEL_ROOT=$CARAVEL_ROOT -u $(id -u $USER):$(id -g $USER) $OPENLANE_IMAGE_NAME sh -c "cd /project/openlane && flow.tcl -design ./user_project_wrapper -save_path .. -save -tag user_project_wrapper -overwrite";
+    # install the PDK, OpenLane
+    - name: install PDK & OpenLane
+      run: bash ${GITHUB_WORKSPACE}/.github/scripts/install_pdk.sh
+
+    # build the user project and wrapper
+    - name: build GDS
+      run: |
+        cd caravel_user_project/openlane
+        docker run -v $OPENLANE_ROOT:/openLANE_flow -v $PDK_ROOT:$PDK_ROOT -v $PWD/..:/project -v $CARAVEL_ROOT:$CARAVEL_ROOT -e PDK_ROOT=$PDK_ROOT -e CARAVEL_ROOT=$CARAVEL_ROOT -u $(id -u $USER):$(id -g $USER) $OPENLANE_IMAGE_NAME sh -c "cd /project/openlane && flow.tcl -design ./user_proj_example -save_path .. -save -tag user_proj_example -overwrite"
+        docker run -v $OPENLANE_ROOT:/openLANE_flow -v $PDK_ROOT:$PDK_ROOT -v $PWD/..:/project -v $CARAVEL_ROOT:$CARAVEL_ROOT -e PDK_ROOT=$PDK_ROOT -e CARAVEL_ROOT=$CARAVEL_ROOT -u $(id -u $USER):$(id -g $USER) $OPENLANE_IMAGE_NAME sh -c "cd /project/openlane && flow.tcl -design ./user_project_wrapper -save_path .. -save -tag user_project_wrapper -overwrite"
 
     # archive the gds and final report for the user project example
     - name: Archive Proj GDS
