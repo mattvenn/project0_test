@@ -22,11 +22,9 @@ jobs:
     - name: test magic
       run: magic --version
 
-#    - name: docker
-#      run: sudo apt-get install -y docker.io
-
     - name: caravel_user_project
       run: >
+        export COMPOSE_INTERACTIVE_NO_CLI=1;
         export PDK_ROOT=$(pwd)/pdk;
         export OPENLANE_ROOT=$(pwd)/openlane;
         export SKYWATER_COMMIT=c094b6e83a4f9298e47f696ec5a7fd53535ec5eb;
@@ -45,8 +43,8 @@ jobs:
         git checkout mpw-3;
         git log | head;
         cd ..;
-        make openlane;
         make pdk;
+        make openlane;
         make user_proj_example;
 
     - name: Archive GDS
