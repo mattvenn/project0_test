@@ -7,26 +7,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-#    # magic dependency
-#    - name: install magic
-#      run: >
-#        sudo apt-get install -y tcsh csh tcl-dev tk-dev libcairo2-dev;
-#        git clone git://opencircuitdesign.com/magic;
-#        cd magic;
-#        git checkout 8.3.209;
-#        ./configure;
-#        make;
-#        sudo make install;
-#
-#    # test
-#    - name: test magic
-#      run: magic --version
-#
-#    - name: docker
-#      run: sudo apt-get install -y docker.io
-#
-    - name: caravel_user_project
+    # magic dependency
+    - name: install magic
+      run: >
+        sudo apt-get install -y tcsh csh tcl-dev tk-dev libcairo2-dev;
+        git clone git://opencircuitdesign.com/magic;
+        cd magic;
+        git checkout 8.3.209;
+        ./configure;
+        make;
+        sudo make install;
 
+    # test
+    - name: test magic
+      run: magic --version
+
+    - name: docker
+      run: sudo apt-get install -y docker.io
+
+    - name: caravel_user_project
       run: >
         export PDK_ROOT=$(pwd)/pdk;
         export OPENLANE_ROOT=$(pwd)/openlane;
@@ -43,7 +42,7 @@ jobs:
         export CARAVEL_ROOT=$(pwd)/caravel;
         make install;
         cd caravel;
-        git log;
+        git log | head;
         cd ..;
         make pdk;
         make openlane;
