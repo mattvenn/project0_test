@@ -7,7 +7,7 @@ export CARAVEL_ROOT=$(pwd)/caravel
 
 make install
 cd caravel
-git checkout $CARAVEL_VERSION
+git checkout $CARAVEL_COMMIT
 cd ..
 
 make pdk
