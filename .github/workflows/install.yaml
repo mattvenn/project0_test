@@ -31,7 +31,7 @@ jobs:
         export OPENLANE_ROOT=$(pwd)/openlane;
         export SKYWATER_COMMIT=c094b6e83a4f9298e47f696ec5a7fd53535ec5eb;
         export OPEN_PDKS_COMMIT=14db32aa8ba330e88632ff3ad2ff52f4f4dae1ad;
-        export OPENLANE_TAG=mpw-3a;
+        export OPENLANE_TAG=2021.09.19_20.25.16;
         export OPENLANE_IMAGE_NAME=efabless/openlane:$OPENLANE_TAG;
         echo $PDK_ROOT;
         echo $OPENLANE_ROOT;
@@ -45,6 +45,12 @@ jobs:
         git checkout mpw-3;
         git log | head;
         cd ..;
-        make pdk;
         make openlane;
+        make pdk;
         make user_proj_example;
+
+    - name: Archive GDS
+      uses: actions/upload-artifact@v2
+      with:
+          name: GDS
+          path: gds/user_project_wrapper.gds
