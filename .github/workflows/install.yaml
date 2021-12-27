@@ -51,4 +51,10 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
           name: GDS
-          path: gds/user_proj_example.gds
+          path: caravel_user_project/gds/user_proj_example.gds
+
+    - name: Archive Signoff
+      uses: actions/upload-artifact@v2
+      with:
+          name: Report
+          path: caravel_user_project/openlane/user_proj_example/runs/user_proj_example/reports/final_summary_report.csv
