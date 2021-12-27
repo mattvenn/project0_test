@@ -22,8 +22,8 @@ jobs:
     - name: test magic
       run: magic --version
 
-    - name: docker
-      run: sudo apt-get install -y docker.io
+#    - name: docker
+#      run: sudo apt-get install -y docker.io
 
     - name: caravel_user_project
       run: >
