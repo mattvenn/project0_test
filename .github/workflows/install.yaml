@@ -12,12 +12,12 @@ jobs:
         PDK_ROOT:               /home/runner/pdk
         OPENLANE_ROOT:          /home/runner/openlane
         CARAVEL_ROOT:           /home/runner/caravel_user_project/caravel
-        USER_PROJECT_COMMIT:    mpw-3
+        USER_PROJECT_COMMIT:    mpw-4b
         SKYWATER_COMMIT:        c094b6e83a4f9298e47f696ec5a7fd53535ec5eb
-        OPEN_PDKS_COMMIT:       14db32aa8ba330e88632ff3ad2ff52f4f4dae1ad
-        CARAVEL_COMMIT:         5712871d27c08900d18edc72a7f534cc8be1b2dd
-        OPENLANE_TAG:           mpw-3a
-        OPENLANE_IMAGE_NAME:    efabless/openlane:mpw-3a
+        OPEN_PDKS_COMMIT:       6c05bc48dc88784f9d98b89d6791cdfd91526676
+        CARAVEL_COMMIT:         mpw-3
+        OPENLANE_TAG:           2021.09.19_20.25.16
+        OPENLANE_IMAGE_NAME:    efabless/openlane:2021.09.19_20.25.16
 
     # ubuntu
     runs-on: ubuntu-latest
