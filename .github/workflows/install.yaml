@@ -40,7 +40,7 @@ jobs:
         export OPENLANE_ROOT=$HOME/openlane
         make openlane
         export PDK_ROOT=$HOME/pdk
-        make pdk-with-sram
+        make pdk
         make simenv
         make verify-io_ports
 
