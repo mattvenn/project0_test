@@ -7,6 +7,8 @@ on:
 jobs:
 
   install:
+    env:
+        MAGIC_VERSION:          8.3.209
 
     # ubuntu
     runs-on: ubuntu-latest
@@ -14,6 +16,18 @@ jobs:
 
     # checkout the repo to get the scripts
     - uses: actions/checkout@v2
+
+    # dependencies we can install from package manager
+    - name: install deps
+      run: sudo apt-get install -y tcsh csh tcl-dev tk-dev libcairo2-dev
+
+    # magic dependency
+    - name: install magic
+      run: bash ${GITHUB_WORKSPACE}/.github/scripts/install_magic.sh
+
+    # test
+    - name: test magic
+      run: magic --version
 
     # build the user project and wrapper
     - name: test toolchain
