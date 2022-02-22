@@ -7,8 +7,8 @@ on:
 jobs:
 
   install:
-    env:
-        MAGIC_VERSION:          8.3.209
+#    env:
+#        MAGIC_VERSION:          8.3.209
 
     # ubuntu
     runs-on: ubuntu-latest
@@ -18,29 +18,32 @@ jobs:
     - uses: actions/checkout@v2
 
     # dependencies we can install from package manager
-    - name: install deps
-      run: sudo apt-get install -y tcsh csh tcl-dev tk-dev libcairo2-dev
+#    - name: install deps
+#      run: sudo apt-get install -y tcsh csh tcl-dev tk-dev libcairo2-dev
 
     # magic dependency
-    - name: install magic
-      run: bash ${GITHUB_WORKSPACE}/.github/scripts/install_magic.sh
+#    - name: install magic
+#      run: bash ${GITHUB_WORKSPACE}/.github/scripts/install_magic.sh
 
     # test
-    - name: test magic
-      run: magic --version
+#    - name: test magic
+#      run: magic --version
 
     # build the user project and wrapper
     - name: test toolchain
       run: |
         cd $HOME
-        git clone -b mpw-5a https://github.com/efabless/caravel_user_project.git
+        git clone -b mpw-5b https://github.com/efabless/caravel_user_project.git
         cd caravel_user_project/
         make install
         make install_mcw
         export OPENLANE_ROOT=$HOME/openlane
         make openlane
         export PDK_ROOT=$HOME/pdk
-        make pdk-with-sram
+        make pdk
         make simenv
         make verify-io_ports
+        make user_project_wrapper
+        make precheck
+        make run-precheck
 
