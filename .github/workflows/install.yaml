@@ -33,17 +33,13 @@ jobs:
     - name: test toolchain
       run: |
         cd $HOME
-        git clone -b mpw-5b https://github.com/efabless/caravel_user_project.git
+        git clone -b mpw-5c https://github.com/efabless/caravel_user_project.git
         cd caravel_user_project/
-        make install
-        make install_mcw
         export OPENLANE_ROOT=$HOME/openlane
-        make openlane
         export PDK_ROOT=$HOME/pdk
-        make pdk
-        make simenv
-        make verify-io_ports
+        make setup
         make user_project_wrapper
+        make verify-io_ports-rtl
         make precheck
         make run-precheck
 
