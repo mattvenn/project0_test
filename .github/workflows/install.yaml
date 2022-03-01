@@ -30,7 +30,7 @@ jobs:
 #      run: magic --version
 
     # build the user project and wrapper
-    - name: test toolchain
+    - name: pdk & openlane
       run: |
         cd $HOME
         git clone -b mpw-5c https://github.com/efabless/caravel_user_project.git
@@ -38,8 +38,21 @@ jobs:
         export OPENLANE_ROOT=$HOME/openlane
         export PDK_ROOT=$HOME/pdk
         make setup
+
+    - name: user project wrapper GDS
+      run: |
+        cd $HOME/caravel_user_project
         make user_project_wrapper
+
+    - name: simulation
+      run: |
+        cd $HOME/caravel_user_project
         make verify-io_ports-rtl
+
+    - name: precheck
+      run: |
+        cd $HOME/caravel_user_project
+        echo 'not default' >> README.md
         make precheck
         make run-precheck
 
