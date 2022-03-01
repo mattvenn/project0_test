@@ -39,6 +39,7 @@ jobs:
     - name: precheck
       run: |
         cd $HOME/caravel_user_project
-        echo 'not default' >> README.md
+        rm README.md
+        touch README.md
         make precheck
         make run-precheck
