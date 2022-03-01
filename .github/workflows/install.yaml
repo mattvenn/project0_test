@@ -7,8 +7,7 @@ on:
 jobs:
 
   install:
-#    env:
-#        MAGIC_VERSION:          8.3.209
+    env:
         OPENLANE_ROOT:  /home/runner/openlane
         PDK_ROOT:       /home/runner/pdk
 
