@@ -9,6 +9,8 @@ jobs:
   install:
 #    env:
 #        MAGIC_VERSION:          8.3.209
+        OPENLANE_ROOT:  /home/runner/openlane
+        PDK_ROOT:       /home/runner/pdk
 
     # ubuntu
     runs-on: ubuntu-latest
@@ -17,26 +19,12 @@ jobs:
     # checkout the repo to get the scripts
     - uses: actions/checkout@v2
 
-    # dependencies we can install from package manager
-#    - name: install deps
-#      run: sudo apt-get install -y tcsh csh tcl-dev tk-dev libcairo2-dev
-
-    # magic dependency
-#    - name: install magic
-#      run: bash ${GITHUB_WORKSPACE}/.github/scripts/install_magic.sh
-
-    # test
-#    - name: test magic
-#      run: magic --version
-
     # build the user project and wrapper
     - name: pdk & openlane
       run: |
         cd $HOME
         git clone -b mpw-5c https://github.com/efabless/caravel_user_project.git
         cd caravel_user_project/
-        export OPENLANE_ROOT=$HOME/openlane
-        export PDK_ROOT=$HOME/pdk
         make setup
 
     - name: user project wrapper GDS
@@ -55,4 +43,3 @@ jobs:
         echo 'not default' >> README.md
         make precheck
         make run-precheck
-
