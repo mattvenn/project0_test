@@ -10,6 +10,7 @@ jobs:
     env:
         OPENLANE_ROOT:  /home/runner/openlane
         PDK_ROOT:       /home/runner/pdk
+        PDK:            sky130A
 
     # ubuntu
     runs-on: ubuntu-latest
@@ -31,10 +32,10 @@ jobs:
         cd $HOME/caravel_user_project
         make user_project_wrapper
 
-#    - name: simulation
-#      run: |
-#        cd $HOME/caravel_user_project
-#        make verify-io_ports-rtl
+    - name: simulation
+      run: |
+        cd $HOME/caravel_user_project
+        make verify-io_ports-rtl
 
     - name: precheck
       run: |
