@@ -10,7 +10,6 @@ jobs:
     env:
         OPENLANE_ROOT:  /home/runner/openlane
         PDK_ROOT:       /home/runner/pdk
-        PDK:            sky130A
 
     # ubuntu
     runs-on: ubuntu-latest
