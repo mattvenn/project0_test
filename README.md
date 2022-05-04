@@ -1,4 +1,5 @@
 [![project0](https://github.com/mattvenn/project0_test/actions/workflows/install.yaml/badge.svg)](https://github.com/mattvenn/project0_test/actions/workflows/install.yaml)
+[![project0-mpw6c](https://github.com/mattvenn/project0_test/actions/workflows/install-mpw-6c.yaml/badge.svg)](https://github.com/mattvenn/project0_test/actions/workflows/install-mpw-6c.yaml)
 
 # Zero to ASIC course: project 0 continuous integration test
 
