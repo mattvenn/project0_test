@@ -10,7 +10,8 @@ jobs:
     env:
         OPENLANE_ROOT:  /home/runner/openlane
         PDK_ROOT:       /home/runner/pdk
-
+        OPENLANE_TAG:   "2022.02.23_02.50.41"
+        
     # ubuntu
     runs-on: ubuntu-latest
     steps:
