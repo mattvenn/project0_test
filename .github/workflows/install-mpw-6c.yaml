@@ -1,4 +1,4 @@
-name: project0-mpw6c
+name: project0-mpw6c u20
 # either manually started, or on a schedule
 on:
   workflow_dispatch:

@@ -1,4 +1,4 @@
-name: project0
+name: project0 u22
 # either manually started, or on a schedule
 on:
   workflow_dispatch:
