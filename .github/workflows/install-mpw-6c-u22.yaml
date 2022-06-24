@@ -1,4 +1,4 @@
-name: project0
+name: project0-mpw6c
 # either manually started, or on a schedule
 on:
   workflow_dispatch:
@@ -10,10 +10,9 @@ jobs:
     env:
         OPENLANE_ROOT:  /home/runner/openlane
         PDK_ROOT:       /home/runner/pdk
-        OPENLANE_TAG:   "2022.02.23_02.50.41"
-        
+
     # ubuntu
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
 
     # checkout the repo to get the scripts
@@ -23,7 +22,7 @@ jobs:
     - name: pdk & openlane
       run: |
         cd $HOME
-        git clone -b mpw-5c https://github.com/efabless/caravel_user_project.git
+        git clone -b mpw-6c https://github.com/efabless/caravel_user_project.git
         cd caravel_user_project/
         make setup
 
