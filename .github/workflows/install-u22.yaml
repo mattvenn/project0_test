@@ -1,4 +1,4 @@
-name: project0 u20
+name: project0 u22
 # either manually started, or on a schedule
 on:
   workflow_dispatch:
@@ -13,7 +13,7 @@ jobs:
         OPENLANE_TAG:   "2022.02.23_02.50.41"
         
     # ubuntu
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
 
     # checkout the repo to get the scripts

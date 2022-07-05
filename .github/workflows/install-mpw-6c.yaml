@@ -1,4 +1,4 @@
-name: project0-mpw6c
+name: project0-mpw6c u20
 # either manually started, or on a schedule
 on:
   workflow_dispatch:
@@ -12,7 +12,7 @@ jobs:
         PDK_ROOT:       /home/runner/pdk
 
     # ubuntu
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
 
     # checkout the repo to get the scripts
