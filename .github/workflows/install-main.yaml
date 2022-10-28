@@ -39,6 +39,7 @@ jobs:
     - name: precheck
       run: |
         cd $HOME/caravel_user_project
+        curl https://raw.githubusercontent.com/TinyTapeout/tinytapeout-mpw7/mpw7/verilog/rtl/user_defines.v > verilog/rtl/user_defines.v
         rm README.md
         touch README.md
         make precheck
