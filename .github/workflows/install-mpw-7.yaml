@@ -55,4 +55,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
           name: Wrapper Report
-          path: /home/runner/caravel_user_project/openlane/user_project_wrapper/runs/user_project_wrapper/reports/final_summary_report.csv
+          path: /home/runner/caravel_user_project/openlane/user_project_wrapper/runs/user_project_wrapper/reports/metrics.csv
