@@ -27,6 +27,11 @@ jobs:
         cd caravel_user_project/
         make setup
 
+    - name: user project example GDS
+      run: |
+        cd $HOME/caravel_user_project
+        make user_proj_example
+
     - name: user project wrapper GDS
       run: |
         cd $HOME/caravel_user_project
