@@ -37,11 +37,6 @@ jobs:
         cd $HOME/caravel_user_project
         make user_project_wrapper
 
-    - name: simulation
-      run: |
-        cd $HOME/caravel_user_project
-        make verify-io_ports-rtl
-
     - name: precheck
       run: |
         cd $HOME/caravel_user_project
@@ -50,6 +45,11 @@ jobs:
         touch README.md
         make precheck
         make run-precheck
+
+    - name: simulation
+      run: |
+        cd $HOME/caravel_user_project
+        make verify-io_ports-rtl
 
     # archive the gds and final report for the user project wrapper
     - name: Archive Wrapper GDS
