@@ -50,6 +50,18 @@ jobs:
         make precheck
         make run-precheck
 
+    - name: setup timing checks
+      run: make setup-timing-scripts
+
+    - name: extract parasitics
+      run: make extract-parasitics
+
+    - name: spef map
+      run: make create-spef-mapping
+
+    - name: caravel sta
+      run: make caravel-sta
+
     # archive the gds and final report for the user project wrapper
     - name: Archive Wrapper GDS
       uses: actions/upload-artifact@v2
