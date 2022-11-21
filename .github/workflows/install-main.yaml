@@ -51,13 +51,19 @@ jobs:
         make run-precheck
       
     - name: extract parasitics
-      run: make extract-parasitics
+      run: |
+        cd $HOME/caravel_user_project
+        make extract-parasitics
 
     - name: spef map
-      run: make create-spef-mapping
+      run: |
+        cd $HOME/caravel_user_project
+        make create-spef-mapping
 
     - name: caravel sta
-      run: make caravel-sta
+      run: |
+        cd $HOME/caravel_user_project
+        make caravel-sta
 
     # archive the gds and final report for the user project wrapper
     - name: Archive Wrapper GDS
