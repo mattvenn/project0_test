@@ -50,6 +50,9 @@ jobs:
         make precheck
         make run-precheck
 
+    - name: fetch new makefile
+      run: curl -k https://raw.githubusercontent.com/efabless/caravel_user_project/main/Makefile > Makefile
+      
     - name: setup timing scripts
       run: make setup-timing-scripts
       
