@@ -49,6 +49,9 @@ jobs:
         touch README.md
         make precheck
         make run-precheck
+    
+    - name: timing missing dependencies
+      run: sudo apt install -y iverilog
       
     - name: extract parasitics
       run: |
@@ -77,3 +80,10 @@ jobs:
       with:
           name: Wrapper Report
           path: /home/runner/caravel_user_project/openlane/user_project_wrapper/runs/user_project_wrapper/reports/final_summary_report.csv
+   
+    - name: Archive Signoff
+      uses: actions/upload-artifact@v2
+      with:
+          name: Signoff
+          path: /home/runner/caravel_user_project/signoff/
+        
