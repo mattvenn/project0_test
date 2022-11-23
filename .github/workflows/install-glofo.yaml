@@ -23,7 +23,7 @@ jobs:
     - name: pdk & openlane
       run: |
         cd $HOME
-        git clone https://github.com/efabless/caravel_user_project.git
+        git clone https://github.com/efabless/caravel_user_project.git -b gfmpw-0b
         cd caravel_user_project/
         make setup
 
