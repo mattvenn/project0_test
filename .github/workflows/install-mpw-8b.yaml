@@ -1,4 +1,4 @@
-name: project0-main
+name: project0-mpw-8b
 # either manually started, or on a schedule
 on:
   workflow_dispatch:
