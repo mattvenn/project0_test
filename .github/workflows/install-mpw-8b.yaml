@@ -51,7 +51,9 @@ jobs:
         make run-precheck
     
     - name: timing missing dependencies
-      run: sudo apt install -y iverilog
+      run: |
+        sudo apt install -y iverilog
+        pip3 install pyverilog
       
     - name: extract parasitics
       run: |
