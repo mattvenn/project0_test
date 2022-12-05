@@ -1,4 +1,4 @@
-name: project0-mpw-8b
+name: project0-mpw-8c
 # either manually started, or on a schedule
 on:
   workflow_dispatch:
@@ -22,7 +22,7 @@ jobs:
     - name: pdk & openlane
       run: |
         cd $HOME
-        git clone https://github.com/efabless/caravel_user_project.git -b mpw-8b
+        git clone https://github.com/efabless/caravel_user_project.git -b mpw-8c
         cd caravel_user_project/
         make setup
 
@@ -52,16 +52,10 @@ jobs:
     
     - name: timing missing dependencies
       run: |
+        which iverilog
+        pip3 list
         sudo apt install -y iverilog
         pip3 install pyverilog
-
-    # also needs yosys
-    - name: install oss-cad-suite
-      uses: YosysHQ/setup-oss-cad-suite@v1
-      with:
-          osscadsuite-version: '2022-09-03' # pin the version, latest one fails to work with caravel
-    - run: | 
-        yosys --version
       
     - name: extract parasitics
       run: |
