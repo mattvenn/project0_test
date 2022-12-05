@@ -52,11 +52,17 @@ jobs:
     
     - name: timing missing dependencies
       run: |
-        which iverilog
-        pip3 list
         sudo apt install -y iverilog
         pip3 install pyverilog
       
+    # also needs yosys
+    - name: install oss-cad-suite
+      uses: YosysHQ/setup-oss-cad-suite@v1
+      with:
+          osscadsuite-version: '2022-09-03' # pin the version, latest one fails to work with caravel
+    - run: | 
+        yosys --version
+
     - name: extract parasitics
       run: |
         cd $HOME/caravel_user_project
