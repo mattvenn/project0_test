@@ -25,6 +25,10 @@ jobs:
         git clone https://github.com/efabless/caravel_user_project.git -b mpw-8c
         cd caravel_user_project/
         make setup
+    
+    # pdk installed by caravel_user_project is wrong
+    - name: fix pdk
+      run: volare enable --pdk sky130 3af133706e554a740cfe60f21e773d9eaa41838c
 
     - name: user project example GDS
       run: |
