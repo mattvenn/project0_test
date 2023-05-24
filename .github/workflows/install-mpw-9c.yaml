@@ -1,0 +1,99 @@
+name: project0-mpw-8c
+# either manually started, or on a schedule
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 4 * * *' # At 4:00 UTC everyday
+jobs:
+
+  install:
+    env:
+        OPENLANE_ROOT:  /home/runner/openlane
+        PDK_ROOT:       /home/runner/pdk
+
+    # ubuntu
+    runs-on: ubuntu-latest
+    steps:
+
+    # checkout the repo to get the scripts
+    - uses: actions/checkout@v2
+
+    # build the user project and wrapper
+    - name: pdk & openlane
+      run: |
+        cd $HOME
+        git clone https://github.com/efabless/caravel_user_project.git -b mpw-9c
+        cd caravel_user_project/
+        make setup
+
+    - name: user project example GDS
+      run: |
+        cd $HOME/caravel_user_project
+        make user_proj_example
+
+    - name: user project wrapper GDS
+      run: |
+        cd $HOME/caravel_user_project
+        make user_project_wrapper
+
+    - name: simulation
+      run: |
+        cd $HOME/caravel_user_project
+        make verify-io_ports-rtl
+
+    - name: precheck
+      run: |
+        cd $HOME/caravel_user_project
+        curl https://raw.githubusercontent.com/TinyTapeout/tinytapeout-mpw7/mpw7/verilog/rtl/user_defines.v > verilog/rtl/user_defines.v
+        rm README.md
+        touch README.md
+        make precheck
+        make run-precheck
+    
+    - name: timing missing dependencies
+      run: |
+        sudo apt install -y iverilog
+        pip3 install pyverilog
+      
+    # also needs yosys
+#    - name: install oss-cad-suite
+#      uses: YosysHQ/setup-oss-cad-suite@v1
+#      with:
+#          osscadsuite-version: '2022-09-03' # pin the version, latest one fails to work with caravel
+#    - run: | 
+#        yosys --version
+
+    - name: extract parasitics
+      run: |
+        cd $HOME/caravel_user_project
+        make extract-parasitics
+
+    - name: spef map
+      run: |
+        cd $HOME/caravel_user_project
+        make create-spef-mapping
+
+    - name: caravel sta
+      run: |
+        cd $HOME/caravel_user_project
+        make caravel-sta
+
+    # archive the gds and final report for the user project wrapper
+    - name: Archive Wrapper GDS
+      uses: actions/upload-artifact@v2
+      with:
+          name: Wrapper GDS
+          path: /home/runner/caravel_user_project/gds/user_project_wrapper.gds
+
+    - name: Archive Wrapper Signoff
+      uses: actions/upload-artifact@v2
+      with:
+          name: Wrapper Report
+          path: /home/runner/caravel_user_project/openlane/user_project_wrapper/runs/user_project_wrapper/reports/final_summary_report.csv
+   
+    - name: Archive Signoff
+      uses: actions/upload-artifact@v2
+      with:
+          name: Signoff
+          path: /home/runner/caravel_user_project/signoff/
+        
