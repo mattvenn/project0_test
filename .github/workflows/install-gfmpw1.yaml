@@ -18,6 +18,7 @@ jobs:
     # build the user project and wrapper
     - name: pdk & openlane
       run: |
+        cd $HOME
         git clone https://github.com/efabless/caravel_user_project.git -b gfmpw-1c
         cd caravel_user_project/
         mkdir verilog/dv/cocotb
