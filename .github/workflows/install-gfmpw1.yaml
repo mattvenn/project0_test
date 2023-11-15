@@ -39,9 +39,10 @@ jobs:
         cd $HOME/caravel_user_project
         # fixup user_defines
         sed -i '53,$ s/INVALID/MGMT_STD_OUTPUT/' verilog/rtl/user_defines.v
+        # new precheck docker command wants to run interactive, fails in GH action
+        sed -i 's/docker run -it/docker run/' Makefile
         rm README.md
         touch README.md
-        make precheck
         make run-precheck
   
    # - name: simulation
