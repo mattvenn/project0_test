@@ -1,4 +1,4 @@
-name: project0-gf181
+name: project0-gfmpw1
 # either manually started, or on a schedule
 on:
   workflow_dispatch:
