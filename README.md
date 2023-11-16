@@ -1,6 +1,4 @@
-[![project0-mpw-9](https://github.com/mattvenn/project0_test/actions/workflows/install-mpw-9.yaml/badge.svg)](https://github.com/mattvenn/project0_test/actions/workflows/install-mpw-9.yaml)
-
-[![project0-gfmpw1](https://github.com/mattvenn/project0_test/actions/workflows/install-gfmpw1.yaml/badge.svg)](https://github.com/mattvenn/project0_test/actions/workflows/install-gfmpw1.yaml)
+[![project0-mpw-9](https://github.com/mattvenn/project0_test/actions/workflows/install-mpw-9.yaml/badge.svg)](https://github.com/mattvenn/project0_test/actions/workflows/install-mpw-9.yaml) [![project0-gfmpw1](https://github.com/mattvenn/project0_test/actions/workflows/install-gfmpw1.yaml/badge.svg)](https://github.com/mattvenn/project0_test/actions/workflows/install-gfmpw1.yaml)
 
 # Zero to ASIC course: project 0 continuous integration test
 
