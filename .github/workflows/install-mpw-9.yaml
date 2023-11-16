@@ -26,6 +26,7 @@ jobs:
         cd caravel_user_project/
         git checkout b8efc55a816c11c27d0c363014c5213573b325c2
         make setup
+        rm -rf mgmt_core_wrapper/signoff # too big
         rm -rf caravel # wrong version
         git clone https://github.com/efabless/caravel-lite caravel
         cd caravel
