@@ -1,5 +1,5 @@
 name: project0-mpw-9
-# either manually started, or on a schedule
+# either manually started, or on a schedule.
 on:
   workflow_dispatch:
   schedule:
