@@ -17,7 +17,12 @@ jobs:
 
     # checkout the repo to get the scripts
     - uses: actions/checkout@v3
-
+    
+    - name: Free Disk Space (Ubuntu)
+      uses: jlumbroso/free-disk-space@main
+      with:
+        tool-cache: false
+        
     # build the user project and wrapper
     - name: pdk & openlane
       run: |
